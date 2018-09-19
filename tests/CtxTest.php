@@ -5,7 +5,7 @@ namespace Tests\PHPCtx\Ctx;
 use Ctx\Ctx;
 
 /**
- * @todo 增加rpc的单测
+ * 单元测试
  */
 class CtxTest extends \PHPUnit_Framework_TestCase
 {
@@ -24,6 +24,13 @@ class CtxTest extends \PHPUnit_Framework_TestCase
 
     public function testExampleService()
     {
+        $ret = $this->ctx->Example->setMessage('Ctx.');
+        $this->assertEquals(true, $ret);
 
+        //factory
+        /** @var Ctx $ctx */
+        $ctx = Ctx::getInstance();
+        $ret = $ctx->Example->getMessage();
+        $this->assertEquals('hello Ctx.', $ret);
     }
 }

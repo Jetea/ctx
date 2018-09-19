@@ -9,7 +9,7 @@
     <testsuites>
         <testsuite name="Ctx Test Suite">
             <directory>./tests</directory>
-            <exclude>./tests/Ctx</exclude>
+            <exclude>./tests/ctx</exclude>
         </testsuite>
     </testsuites>
     <php>
