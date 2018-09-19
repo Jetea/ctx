@@ -77,7 +77,7 @@ abstract class Ctx
         $className = '\\' . $this->ctxNamespace . '\Service\\' . $m . '\\Ctx';
         $this->$m = new $className();
         $this->$m->ctx = $this;
-        $this->$m->initWithArgs($this->ctxNamespace, $m);
+        $this->$m->initCtxService($this->ctxNamespace, $m);
         return $this->$m;
     }
 }
