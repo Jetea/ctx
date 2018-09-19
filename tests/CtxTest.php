@@ -27,6 +27,9 @@ class CtxTest extends \PHPUnit_Framework_TestCase
         $ret = $this->ctx->Example->setMessage('Ctx.');
         $this->assertEquals(true, $ret);
 
+        $ret = $this->ctx->Example->getMessage();
+        $this->assertEquals('hello Ctx.', $ret);
+
         //factory
         /** @var Ctx $ctx */
         $ctx = Ctx::getInstance();
