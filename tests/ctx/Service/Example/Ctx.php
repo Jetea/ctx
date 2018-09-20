@@ -36,4 +36,22 @@ class Ctx extends BasicCtx
     {
         return $this->demo->getMessage();
     }
+
+    const EXAMPLE_CTX_RPC_HOST = 'https://example.com/rpc';
+
+    /**
+     * rpc配置
+     */
+    protected $rpc = [
+        'host'      => self::EXAMPLE_CTX_RPC_HOST,  //网关地址
+        'method'    => ['rpc'], //方法名
+    ];
+
+    private function rpc()
+    {
+    }
+
+    private function rpc1()
+    {
+    }
 }

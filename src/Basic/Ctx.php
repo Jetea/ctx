@@ -106,4 +106,46 @@ abstract class Ctx
             throw new Exception('can not loadC until construct obj, invoke:' . __METHOD__ . '@' . get_class($this));
         }
     }
+
+    /**
+     * 远程Rpc调用
+     *
+     * @param $method
+     * @param $args
+     *
+     * @return mixed
+     * @throws Exception
+     */
+    public function __call($method, $args)
+    {
+        //减少无用的远程调用
+        if (empty($this->rpc['method']) || ! in_array($method, $this->rpc['method']) || empty($this->rpc['host'])) {
+            throw new Exception('非法调用:' .$method . '@' . get_class($this));
+        }
+
+        return $this->invokeRpc($method, $args);
+    }
+
+    /**
+     * rpc配置
+     */
+    protected $rpc = [
+        'host'      => '',  //网关地址
+        'method'    => [], //方法名 减少无用的远程调用
+    ];
+
+    /**
+     * 执行远程Rpc调用逻辑，方便子类进行更灵活的操作如:显式调用,异步调用等
+     *
+     * @param $method
+     * @param $args
+     *
+     * @return mixed
+     */
+    protected function invokeRpc($method, $args)
+    {
+        //do rpc, like below:
+        //$rpc = new JsonRpcClient($this->rpc['host']);
+        //return $rpc->exec($this->getModName(), $method, $args);
+    }
 }

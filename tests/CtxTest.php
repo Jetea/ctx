@@ -14,7 +14,7 @@ class CtxTest extends \PHPUnit_Framework_TestCase
      */
     protected $ctx;
 
-    public function __construct($name = null, array $data = [], $dataName = '')
+    public function __construct($name = null, $data = [], $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
 
@@ -35,5 +35,31 @@ class CtxTest extends \PHPUnit_Framework_TestCase
         $ctx = Ctx::getInstance();
         $ret = $ctx->Example->getMessage();
         $this->assertEquals('hello Ctx.', $ret);
+    }
+
+    public function testExampleServiceRpc()
+    {
+        $modName = 'Example';
+        $args = [1, 2, 3];
+        $method = 'rpc';
+
+        $rpcResult = $this->ctx->$modName->$method(...$args);
+        $this->assertEquals($rpcResult, sprintf(
+            'rpc host: %s, moduleName: %s, method: %s, args: %s',
+            \Ctx\Service\Example\Ctx::EXAMPLE_CTX_RPC_HOST,
+            $modName,
+            $method,
+            var_export($args, true)
+        ));
+    }
+
+    public function testCallUndefinedRpcMethod()
+    {
+        try {
+            $this->ctx->Example->rpc1();
+            $this->assertTrue(false);
+        } catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
     }
 }
