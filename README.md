@@ -112,13 +112,13 @@ ctx 根文件夹
    }
    ```
 
-   所有的***Service模块入口类***都必须继承此类，模块子类可以选择性继承此类，如果需要采用rpc将个别服务独立部署和优化等，可以在此类中通过实现`invokeRpc`方法来实现具体的rpc调用逻辑，这样所有继承了此基类的方法均很容易实现rpc调用。
+   所有的***Service模块入口类***都必须继承此类，模块子类可以选择性继承此类，所有继承了此类的服务类都会拥有`$ctx`属性，从而能在服务内简单的通过`$this->ctx->模块->方法()`这样的方式来调用其他模块的方法。如果需要采用rpc将个别服务独立部署和优化等，可以在此类中通过实现`invokeRpc`方法来实现具体的rpc调用逻辑，这样所有继承了此基类的方法均很容易实现rpc调用。
 
 5. 新建`Service文件夹`，此文件夹用于包含所有的模块具体实现。
 
 6. 新建模块文件夹，如`Example`，一般模块名跟业务有关，如`User`表示用户服务模块，`Payment`表示支付服务模块，此文件夹下将存放所有的此模块的具体实现。
 
-7. 编写***Service模块入口类***`Service/Ctx.php`，此类为模块入口，此类为***单例实现***，所有调用该模块的方法都要走此类进行调度当前模块下的方法的子类的方法，参考[https://github.com/phpctx/ctx/blob/master/tests/ctx/Service/Example/Ctx.php](https://github.com/phpctx/ctx/blob/master/tests/ctx/Service/Example/Ctx.php)
+7. 编写***Service模块入口类***，如`Service/Example/Ctx.php`，此类为`Example`模块入口，此类为***单例实现***，所有调用该模块的方法都要走此类进行调度当前模块下的方法的子类的方法，参考[https://github.com/phpctx/ctx/blob/master/tests/ctx/Service/Example/Ctx.php](https://github.com/phpctx/ctx/blob/master/tests/ctx/Service/Example/Ctx.php)
 
    ```
    <?php
@@ -139,10 +139,69 @@ ctx 根文件夹
 
 ## 调用ctx服务
 
-1. 实例化ctx服务
+调用ctx服务指调用Service模块服务下的方法，只能调用到模块的入口类方法，这样的调用方式是为了更好的限制了所有服务调用都要走调用的模块下的入口类，方便统一进行处理，调用ctx服务分服务外部调用和服务内部调用：
 
-```
-\Ctx\Ctx::getInstance();
-```
+* Service模块服务内调用
 
-2. 
+   ```
+   $this->ctx->模块->方法()
+   ```
+
+* Service模块服务外调用
+
+   1. 实例化ctx服务，参考[https://github.com/phpctx/ctx/blob/master/tests/CtxTest.php](https://github.com/phpctx/ctx/blob/master/tests/CtxTest.php)
+
+   ```
+   \Ctx\Ctx::getInstance();
+   ```
+
+   2. 如果ctx服务的实例为 `$ctx`
+
+   ```
+   $ctx->模块->方法()
+   ```
+
+
+## 其它
+
+* 所有的Service模块入口类都***不允许***实现`__construct`方法，如果需要初始化模块只能实现`init`方法，所有的模块入口初始化的时候都会执行init方法，如 `$this->ctx->Example`将会实例User模块的入口类`\Ctx\Service\Example\Ctx`，同时会调用其中的`init`方法。
+* Ctx服务实例 和 模块入口类实例 都只会 有一个，即单例，方便模块进行更好的处理。
+* 所有继承了 ***所有的服务模块类的基类*** 的类，都会拥有：
+  1.  `ctx`属性，此属性为ctx服务实例，方便在服务内调用其他的模块方法
+  2. 如果基类实现了`invokeRpc`方法，则所有继承的类都会拥有rpc实现。
+  3. `loadC`方法，模块内加载其他类，模块类所有非入口类都需要放到 `Child`文件夹下通过模块内的`loadC`方法进行实例化
+* 所有模块内的非入口类无论是否继承 ***所有的服务模块类的基类***，都能实现 `__construct`方法，但是继承了基类的话一定会在实例化后，被调用 `init` 方法。 
+
+* 模块入口类或模块子类rpc实现：
+
+  1. ***所有的服务模块类的基类*** 实现`invokeRpc`方法
+
+  2. 模块入口类或模块子类继承 ***所有的服务模块类的基类***
+
+  3. 模块入口类或模块子类重载属性`$rpc`，属性访问方式为`protected`，属性为数组，拥有两个字段`host`和`method`，其中`host`表示rpc方法的远程host，`method`表示允许执行的rpc方法数组。
+
+     ```
+     /**
+      * rpc配置
+      */
+     protected $rpc = [
+     	'host'      => '',  //网关地址
+     	'method'    => [], //方法名 减少无用的远程调用
+     ];
+     ```
+
+
+* 一点建议：
+
+  ctx可以独立开项目，在需要的项目中进行拉取调用。大概组织为：
+
+  ```
+  web项目文件夹
+  api项目文件夹
+  脚本文件夹
+  admin项目文件夹
+  
+  ctx文件夹
+  ```
+
+  所有的项目依赖共同的ctx服务，每个项目只负责参数的获取和ctx服务的调用组装实现业务逻辑，每个项目实现参数获取和响应输出，具体业务逻辑都要依赖 ctx 进行实现。为了方便ctx模块中的方法的共用，不建议直接把 `$request` 这样的请求对象作为参数传递给 ctx模块的方法，也就是不要在controller之外的地方进行输入参数的获取，而是用参数的方式传递给service。
