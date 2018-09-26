@@ -91,17 +91,6 @@ abstract class Ctx
                 $subObj->initCtxService($this->namespace, $this->modName);
             }
             return $subObj;
-
-            // 不想兼容低版本，舍弃反射的实现方式
-            // classReflection 拥有的方法: isAbstract | isInterface | isSubclassOf | hasMethod | getMethod('方法名')->isPublic()
-            // getConstructor()->getParameters() 获取构造函数的参数(方便实现依赖注入)
-            // $classReflection = new \ReflectionClass($className);
-            // $subObj = $classReflection->newInstanceArgs($args);
-            // if ($classReflection->isSubclassOf(__CLASS__)) {
-            //     $subObj->ctx = $this->ctx;
-            //     $subObj->initCtxService($this->namespace, $this->modName);
-            // }
-            // return $subObj;
         } else {    //还未完成初始化(在构造函数__construct中调用loadC)是不允许调用父类的loadC
             throw new Exception('can not loadC until construct obj, invoke:' . __METHOD__ . '@' . get_class($this));
         }

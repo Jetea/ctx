@@ -15,5 +15,6 @@ class Ctx extends BasicCtx
      */
     protected static $ctxInstance;
 
+    //ctx namespace
     protected $ctxNamespace = 'Ctx';
 }
