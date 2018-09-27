@@ -1,8 +1,8 @@
 <?php
 
-namespace Ctx\Service\Example\Child;
+namespace Tests\PHPCtx\Ctx\Service\Example\Child;
 
-use Ctx\Basic\Ctx as BasicCtx;
+use Tests\PHPCtx\Ctx\Basic\Ctx as BasicCtx;
 
 class Demo extends BasicCtx
 {

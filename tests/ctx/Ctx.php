@@ -1,12 +1,12 @@
 <?php
 
-namespace Ctx;
+namespace Tests\PHPCtx\Ctx;
 
 use PHPCtx\Ctx\Ctx as BasicCtx;
 
 /**
  * Class Ctx
- * @property \Ctx\Service\Example\Ctx $Example
+ * @property \Tests\PHPCtx\Ctx\Service\Example\Ctx $Example
  */
 class Ctx extends BasicCtx
 {
@@ -16,5 +16,5 @@ class Ctx extends BasicCtx
     protected static $ctxInstance;
 
     //ctx namespace
-    protected $ctxNamespace = 'Ctx';
+    protected $ctxNamespace = 'Tests\PHPCtx\Ctx';
 }

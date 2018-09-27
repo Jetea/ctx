@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\PHPCtx\Ctx;
+namespace Tests\PHPCtx;
 
-use Ctx\Ctx;
+use Tests\PHPCtx\Ctx\Ctx;
 
 /**
  * 单元测试
@@ -46,7 +46,7 @@ class CtxTest extends \PHPUnit_Framework_TestCase
         $rpcResult = $this->ctx->$modName->$method(...$args);
         $this->assertEquals($rpcResult, sprintf(
             'rpc host: %s, moduleName: %s, method: %s, args: %s',
-            \Ctx\Service\Example\Ctx::EXAMPLE_CTX_RPC_HOST,
+            \Tests\PHPCtx\Ctx\Service\Example\Ctx::EXAMPLE_CTX_RPC_HOST,
             $modName,
             $method,
             var_export($args, true)

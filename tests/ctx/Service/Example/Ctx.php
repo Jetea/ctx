@@ -1,8 +1,8 @@
 <?php
 
-namespace Ctx\Service\Example;
+namespace Tests\PHPCtx\Ctx\Service\Example;
 
-use Ctx\Basic\Ctx as BasicCtx;
+use Tests\PHPCtx\Ctx\Basic\Ctx as BasicCtx;
 
 /**
  * 模块接口声明文件
@@ -12,7 +12,7 @@ use Ctx\Basic\Ctx as BasicCtx;
 class Ctx extends BasicCtx
 {
     /**
-     * @var \Ctx\Service\Example\Child\Demo
+     * @var \Tests\PHPCtx\Ctx\Service\Example\Child\Demo
      */
     private $demo;
 

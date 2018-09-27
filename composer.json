@@ -19,7 +19,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Ctx\\": "tests/ctx/"
+            "Tests\\PHPCtx\\Ctx\\": "tests/ctx/"
         }
     }
 }
