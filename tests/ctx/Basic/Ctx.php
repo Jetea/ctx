@@ -8,7 +8,7 @@ use PHPCtx\Ctx\Basic\Ctx as BasicCtx;
  * Class Ctx
  * @package Ctx\Basic
  *
- * @property \Tests\PHPCtx\Ctx\Ctx $ctx
+ * @property \Tests\PHPCtx\Ctx\Ctx $ctx 声明ctx实例，方便ide跳转
  */
 abstract class Ctx extends BasicCtx
 {
