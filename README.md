@@ -32,7 +32,7 @@ $this->ctx->模块名->方法()
 ## 安装
 
 ```
-composer require jetea/ctx=~1.0
+composer require jetea/ctx -vvv
 ```
 
 ## 编写ctx服务
