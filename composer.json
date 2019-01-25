@@ -1,7 +1,7 @@
 {
-    "name": "phpctx/ctx",
+    "name": "jetea/ctx",
     "description": "the context library",
-    "keywords": ["ctx", "context", "phpctx", "framework"],
+    "keywords": ["ctx", "context", "jetea", "framework"],
     "license": "MIT",
 
     "require": {
@@ -14,12 +14,12 @@
 
     "autoload": {
         "psr-4": {
-            "PHPCtx\\Ctx\\": "src/"
+            "Jetea\\Ctx\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\PHPCtx\\Ctx\\": "tests/ctx/"
+            "Tests\\Jetea\\Ctx\\": "tests/ctx/"
         }
     }
 }

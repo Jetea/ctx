@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\PHPCtx\Ctx\Service\Example;
+namespace Tests\Jetea\Ctx\Service\Example;
 
-use Tests\PHPCtx\Ctx\Basic\Ctx as BasicCtx;
+use Tests\Jetea\Ctx\Basic\Ctx as BasicCtx;
 
 /**
  * 模块接口声明文件
@@ -12,12 +12,12 @@ use Tests\PHPCtx\Ctx\Basic\Ctx as BasicCtx;
 class Ctx extends BasicCtx
 {
     /**
-     * @var \Tests\PHPCtx\Ctx\Service\Example\Child\Demo
+     * @var \Tests\Jetea\Ctx\Service\Example\Child\Demo
      */
     private $demo;
 
     /**
-     * @throws \PHPCtx\Ctx\Exceptions\Exception
+     * @throws \Jetea\Ctx\Exceptions\Exception
      */
     public function init()
     {

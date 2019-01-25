@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPCtx\Ctx\Exceptions;
+namespace Jetea\Ctx\Exceptions;
 
 /**
  * ctx exception

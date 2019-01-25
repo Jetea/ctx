@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\PHPCtx\Ctx\Service\Example\Child;
+namespace Tests\Jetea\Ctx\Service\Example\Child;
 
-use Tests\PHPCtx\Ctx\Basic\Ctx as BasicCtx;
+use Tests\Jetea\Ctx\Basic\Ctx as BasicCtx;
 
 class Demo extends BasicCtx
 {

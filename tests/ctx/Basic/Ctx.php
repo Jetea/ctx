@@ -1,14 +1,14 @@
 <?php
 
-namespace Tests\PHPCtx\Ctx\Basic;
+namespace Tests\Jetea\Ctx\Basic;
 
-use PHPCtx\Ctx\Basic\Ctx as BasicCtx;
+use Jetea\Ctx\Basic\Ctx as BasicCtx;
 
 /**
  * Class Ctx
  * @package Ctx\Basic
  *
- * @property \Tests\PHPCtx\Ctx\Ctx $ctx 声明ctx实例，方便ide跳转
+ * @property \Tests\Jetea\Ctx\Ctx $ctx 声明ctx实例，方便ide跳转
  */
 abstract class Ctx extends BasicCtx
 {

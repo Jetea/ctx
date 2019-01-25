@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPCtx\Ctx\Basic;
+namespace Jetea\Ctx\Basic;
 
-use PHPCtx\Ctx\Exceptions\Exception;
+use Jetea\Ctx\Exceptions\Exception;
 
 /**
  * 所有的业务模块基类
@@ -13,7 +13,7 @@ use PHPCtx\Ctx\Exceptions\Exception;
 abstract class Ctx
 {
     /**
-     * @var \PHPCtx\Ctx\Ctx $ctx
+     * @var \Jetea\Ctx\Ctx $ctx
      */
     public $ctx;
 
@@ -76,7 +76,7 @@ abstract class Ctx
      *
      * @param $class
      * @param $args
-     * @return \PHPCtx\Ctx\Basic\Ctx
+     * @return \Jetea\Ctx\Basic\Ctx
      * @throws Exception
      */
     final protected function loadC($class, ...$args)
@@ -86,7 +86,7 @@ abstract class Ctx
 
             $subObj = new $className(...$args); //since php 5.6
             if ($subObj instanceof self) {
-                /** @var \PHPCtx\Ctx\Basic\Ctx $subObj */
+                /** @var \Jetea\Ctx\Basic\Ctx $subObj */
                 $subObj->ctx = $this->ctx;
                 $subObj->initCtxService($this->namespace, $this->modName);
             }

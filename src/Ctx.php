@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPCtx\Ctx;
+namespace Jetea\Ctx;
 
-use PHPCtx\Ctx\Exceptions\Exception;
+use Jetea\Ctx\Exceptions\Exception;
 
 /**
  * 通用context对象

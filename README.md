@@ -32,12 +32,12 @@ $this->ctx->模块名->方法()
 ## 安装
 
 ```
-composer require phpctx/ctx=~1.0
+composer require jetea/ctx=~1.0
 ```
 
 ## 编写ctx服务
 
-在调用服务之前需要先编写服务，以下将描述一个服务的编写过程。源码参考参考：[https://github.com/phpctx/ctx/tree/master/tests/ctx](https://github.com/phpctx/ctx/tree/master/tests/ctx)
+在调用服务之前需要先编写服务，以下将描述一个服务的编写过程。源码参考参考：[https://github.com/jetea/ctx/tree/master/tests/ctx](https://github.com/jetea/ctx/tree/master/tests/ctx)
 
 参考目录树结构如：
 
@@ -59,14 +59,14 @@ ctx 根文件夹
 
 1. 新建根文件夹，名称随意，如 `ctx`
 
-2. 编写**Ctx入口类**：`Ctx.php`，为Ctx服务唯一入口，所有的模块调度都要通过此类实现，此类为**单例实现**。参考[https://github.com/phpctx/ctx/blob/master/tests/ctx/Ctx.php](https://github.com/phpctx/ctx/blob/master/tests/ctx/Ctx.php)
+2. 编写**Ctx入口类**：`Ctx.php`，为Ctx服务唯一入口，所有的模块调度都要通过此类实现，此类为**单例实现**。参考[https://github.com/jetea/ctx/blob/master/tests/ctx/Ctx.php](https://github.com/jetea/ctx/blob/master/tests/ctx/Ctx.php)
 
    ```
    <?php
    
    namespace Ctx;
    
-   use PHPCtx\Ctx\Ctx as BasicCtx;
+   use Jetea\Ctx\Ctx as BasicCtx;
    
    /**
     * Class Ctx
@@ -102,14 +102,14 @@ ctx 根文件夹
 
 3. 新增`Basic文件夹`，包含 **所有的服务模块类的基类** `Ctx` ，也可以放入公共的服务模块异常`Exception`类等。
 
-4. 编写**所有的服务模块类的基类**`Basic/Ctx.php`，方便所有的模块类继承实现公共逻辑处理和复用，如所有的服务的rpc实现等，参考[https://github.com/phpctx/ctx/blob/master/tests/ctx/Basic/Ctx.php](https://github.com/phpctx/ctx/blob/master/tests/ctx/Basic/Ctx.php)
+4. 编写**所有的服务模块类的基类**`Basic/Ctx.php`，方便所有的模块类继承实现公共逻辑处理和复用，如所有的服务的rpc实现等，参考[https://github.com/jetea/ctx/blob/master/tests/ctx/Basic/Ctx.php](https://github.com/jetea/ctx/blob/master/tests/ctx/Basic/Ctx.php)
 
    ```
    <?php
    
    namespace Ctx\Basic;
    
-   use PHPCtx\Ctx\Basic\Ctx as BasicCtx;
+   use Jetea\Ctx\Basic\Ctx as BasicCtx;
    
    /**
     * Class Ctx
@@ -135,7 +135,7 @@ ctx 根文件夹
 
 6. 新建模块文件夹，如`Example`，一般模块名跟业务有关，如`User`表示用户服务模块，`Payment`表示支付服务模块，此文件夹下将存放所有的此模块的具体实现。
 
-7. 编写**Service模块入口类**，如`Service/Example/Ctx.php`，此类为`Example`模块入口，此类为**单例实现**，所有调用该模块的方法都要走此类进行调度当前模块下的方法的子类的方法，参考[https://github.com/phpctx/ctx/blob/master/tests/ctx/Service/Example/Ctx.php](https://github.com/phpctx/ctx/blob/master/tests/ctx/Service/Example/Ctx.php)
+7. 编写**Service模块入口类**，如`Service/Example/Ctx.php`，此类为`Example`模块入口，此类为**单例实现**，所有调用该模块的方法都要走此类进行调度当前模块下的方法的子类的方法，参考[https://github.com/jetea/ctx/blob/master/tests/ctx/Service/Example/Ctx.php](https://github.com/jetea/ctx/blob/master/tests/ctx/Service/Example/Ctx.php)
 
    ```
    <?php
@@ -166,7 +166,7 @@ ctx 根文件夹
 
 * Service模块服务外调用
 
-   1. 实例化ctx服务，参考[https://github.com/phpctx/ctx/blob/master/tests/CtxTest.php](https://github.com/phpctx/ctx/blob/master/tests/CtxTest.php)
+   1. 实例化ctx服务，参考[https://github.com/jetea/ctx/blob/master/tests/CtxTest.php](https://github.com/jetea/ctx/blob/master/tests/CtxTest.php)
 
    ```
    \Ctx\Ctx::getInstance();
