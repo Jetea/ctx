@@ -1,5 +1,3 @@
-<p align="center"><img src="https://avatars3.githubusercontent.com/u/43405966?s=200&v=4" title="ctx"</p>
-
 ## 关于 Ctx
 
 Ctx 是一个模块化服务上下文框架，帮助模块化组织各种服务逻辑，让服务间调用方式更加统一。
