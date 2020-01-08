@@ -36,6 +36,15 @@ $this->ctx->模块名->方法()
 composer require jetea/ctx -vvv
 ```
 
+> 同时在`composer.json`中声明 ctx 服务项目目录 psr4 规则
+```
+"autoload": {
+    "psr-4": {
+        "Ctx\\": "ctx/"
+    },
+},
+```
+
 ## 编写ctx服务
 
 在调用服务之前需要先编写服务，以下将描述一个服务的编写过程。源码参考参考：[https://github.com/jetea/ctx/tree/master/tests/ctx](https://github.com/jetea/ctx/tree/master/tests/ctx)
