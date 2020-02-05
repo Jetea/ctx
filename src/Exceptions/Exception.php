@@ -9,7 +9,7 @@ namespace Jetea\Ctx\Exceptions;
  * @author    sh7ning
  * @version   0.0.1
  */
-class Exception extends \Exception
+class Exception extends \RuntimeException
 {
     /**
      * Exception constructor.

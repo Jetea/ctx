@@ -11,10 +11,12 @@ use Jetea\Ctx\Ctx as BasicCtx;
 class Ctx extends BasicCtx
 {
     /**
-     * ctx instance
+     * @var static
      */
     protected static $ctxInstance;
 
-    //ctx namespace
+    /**
+     * @var string
+     */
     protected $ctxNamespace = 'Tests\Jetea\Ctx';
 }

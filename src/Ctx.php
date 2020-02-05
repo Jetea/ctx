@@ -24,12 +24,12 @@ abstract class Ctx
     /**
      * 框架单例，静态变量保存全局实例
      * @description 这里设置为private，是为了让该静态属性必须被继承，且必须为 protected
+     * @var static
      */
     private static $ctxInstance;
 
     /**
      * 请求单例
-     *
      * @return static
      */
     public static function getInstance()
@@ -47,11 +47,13 @@ abstract class Ctx
      * 采用继承，而不采用反射提高性能
      * $thisReflection = new ReflectionClass($this);
      * $this->ctxNamespace = $thisReflection->getNamespaceName();
+     * @var string
      */
     protected $ctxNamespace;
 
     /**
      * 私有构造函数，防止外界实例化对象
+     * Ctx constructor.
      */
     protected function __construct()
     {
@@ -61,9 +63,8 @@ abstract class Ctx
      * 自动单例获取ctx服务框架的模块
      * 模块接口文件必须是单例，防止错误的调用模块接口
      *
-     * @param $m string 模块名 模块名首字母必须大写
+     * @param string $m 模块名 模块名首字母必须大写
      * @return mixed
-     * @throws Exception
      */
     public function __get($m)
     {

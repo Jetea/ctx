@@ -20,9 +20,13 @@ abstract class Ctx
     /**
      * 命名空间
      * 辅助方法有setNamespace() 和 getNamespace()
+     * @var string
      */
     private $namespace = '';
 
+    /**
+     * @return string
+     */
     final public function getNamespace()
     {
         return $this->namespace;
@@ -31,9 +35,13 @@ abstract class Ctx
     /**
      * 模块名
      * 辅助方法有setModName() 和 getModName()
+     * @var string
      */
     private $modName = '';
 
+    /**
+     * @return string
+     */
     final public function getModName()
     {
         return $this->modName;
@@ -44,9 +52,9 @@ abstract class Ctx
      *
      * 不采用反射实现，是因为已知可以直接传递，减少计算量
      *
-     * @param $namespace
-     * @param $modName
-     * @throws Exception
+     * @param string $namespace
+     * @param string $modName
+     * @return void
      */
     final public function initCtxService($namespace, $modName)
     {
@@ -63,6 +71,7 @@ abstract class Ctx
 
     /**
      * 模块具体执行的初始化方法
+     * @return void
      */
     protected function init()
     {
@@ -77,7 +86,6 @@ abstract class Ctx
      * @param $class
      * @param $args
      * @return static|object
-     * @throws Exception
      */
     final protected function loadC($class, ...$args)
     {
@@ -101,11 +109,9 @@ abstract class Ctx
     /**
      * 远程Rpc调用
      *
-     * @param $method
-     * @param $args
-     *
+     * @param string $method
+     * @param array $args
      * @return mixed
-     * @throws Exception
      */
     public function __call($method, $args)
     {
@@ -119,6 +125,7 @@ abstract class Ctx
 
     /**
      * rpc配置
+     * @var array
      */
     protected $rpc = [
         'host'      => '',  //网关地址
@@ -128,9 +135,8 @@ abstract class Ctx
     /**
      * 执行远程Rpc调用逻辑，方便子类进行更灵活的操作如:显式调用,异步调用等
      *
-     * @param $method
-     * @param $args
-     *
+     * @param string $method
+     * @param array $args
      * @return mixed
      */
     protected function invokeRpc($method, $args)
