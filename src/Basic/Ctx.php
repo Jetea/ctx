@@ -76,13 +76,15 @@ abstract class Ctx
      *
      * @param $class
      * @param $args
-     * @return \Jetea\Ctx\Basic\Ctx
+     * @return static|object
      * @throws Exception
      */
     final protected function loadC($class, ...$args)
     {
         if (! empty($this->modName)) {
-            $className = '\\' . $this->namespace . '\Service\\' . $this->modName . '\\Child\\' . $class;
+            $childClassPrefix = '\\' . $this->namespace . '\Service\\' . $this->modName . '\\Child\\';
+            $class = ltrim($class, $childClassPrefix);
+            $className = $childClassPrefix . $class;
 
             $subObj = new $className(...$args); //since php 5.6
             if ($subObj instanceof self) {

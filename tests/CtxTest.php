@@ -62,4 +62,23 @@ class CtxTest extends \PHPUnit_Framework_TestCase
             $this->assertTrue(true);
         }
     }
+
+
+    public function testLoadC1()
+    {
+        $this->ctx->Example->loadCTest1();
+        $this->assertTrue(true);
+    }
+
+    public function testLoadC2()
+    {
+        $this->ctx->Example->loadCTest2();
+        $this->assertTrue(true);
+    }
+
+    public function testLoadC3()
+    {
+        $this->expectException(\Error::class);
+        $this->ctx->Example->loadCTest3();
+    }
 }
