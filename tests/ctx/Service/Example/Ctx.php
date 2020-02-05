@@ -24,6 +24,21 @@ class Ctx extends BasicCtx
         $this->demo = $this->loadC('Demo', 'hello');
     }
 
+    public function loadCTest1()
+    {
+        $this->loadC('Demo', 'hello');
+    }
+
+    public function loadCTest2()
+    {
+        $this->loadC(\Tests\Jetea\Ctx\Service\Example\Child\Demo::class, 'hello');
+    }
+
+    public function loadCTest3()
+    {
+        $this->loadC('\Null\Jetea\Ctx\Service\Example\Child\Demo', 'hello');
+    }
+
     /**
      * 测试代码
      */
