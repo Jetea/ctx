@@ -89,10 +89,13 @@ abstract class Ctx
      */
     final protected function loadC($class, ...$args)
     {
-        if (! empty($this->modName)) {
-            $childClassPrefix = '\\' . $this->namespace . '\Service\\' . $this->modName . '\\Child\\';
-            $class = ltrim($class, $childClassPrefix);
-            $className = $childClassPrefix . $class;
+        if (!empty($this->modName)) {
+            $childClassPrefix = $this->namespace . '\\Service\\' . $this->modName . '\\Child';
+            if (strpos($class, $childClassPrefix) === 0) {
+                $className = $class;
+            } else {
+                $className = $childClassPrefix . '\\' . $class;
+            }
 
             $subObj = new $className(...$args); //since php 5.6
             if ($subObj instanceof self) {
